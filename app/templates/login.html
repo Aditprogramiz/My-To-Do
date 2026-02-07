@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<style>
+    footer {
+        display: none;
+    }
+</style>
+<div class="auth-center">
+<div class="login-box">
+    <h2>login</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="username">username</label>
+            <input type="text" name="username" id="username" required>
+      </div>
+      <div class="form-group">
+            <label for="password">password</label>
+            <input type="password" name="password" id="password" required>
+      </div>
+      <div>
+        <button type="submit" class="btn">Submit</button>
+      </div>
+       <div class="toggle" onclick="document.documentElement.classList.toggle('dark')">
+    🌙  Dark Mode
+    </div>
+
+    </form>
+
+</div>
+</div>
+
+<img id="bg" src="{{url_for('static', filename='images/bg.png')}}" alt="background">
+
+{% endblock %}
