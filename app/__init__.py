@@ -19,11 +19,9 @@ db = SQLAlchemy()
 def create_app():
     # Get the base directory
     basedir = os.path.abspath(os.path.dirname(__file__))
-    parent_dir = os.path.dirname(basedir)
-    
-    # Create Flask app with explicit template folder
-    template_folder = os.path.join(parent_dir, 'templates')
-    app = Flask(__name__, template_folder=template_folder, static_folder=os.path.join(parent_dir, 'static'))
+    # Use package-relative templates and static folders (Flask will resolve them
+    # relative to this package's location)
+    app = Flask(__name__, template_folder='templates', static_folder='static')
 
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
     
