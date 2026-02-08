@@ -3,12 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 try:
     from dotenv import load_dotenv
-    try:
-        load_dotenv()
-    except Exception:
-        pass
-except ImportError:
-    # python-dotenv not installed in this environment; continue without loading .env
+except Exception:
+    # If python-dotenv isn't available, provide a no-op loader
+    def load_dotenv():
+        return None
+
+# Attempt to load environment from a .env file if present
+try:
+    load_dotenv()
+except Exception:
     pass
 
 db = SQLAlchemy()
